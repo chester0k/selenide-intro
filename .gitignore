@@ -2,3 +2,4 @@
 .gradle/
 src/test/com/syd/selenideintro/GoogleTest.java
 src/test/com/syd/selenideintro/TodoMvcTest.java
+build/
