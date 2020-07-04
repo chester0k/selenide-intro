@@ -22,6 +22,7 @@ public class TodoMvcTestTask1 {
         element("#ember11").shouldHave(cssClass("completed")).shouldHave(exactText("b"));
         element("#ember6").shouldHave(not(cssClass("completed"))).shouldHave(exactText("a"));
         element("#ember13").shouldHave(not(cssClass("completed"))).shouldHave(exactText("c"));
+        
     }
 
 }
