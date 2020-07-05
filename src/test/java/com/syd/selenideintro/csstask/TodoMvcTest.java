@@ -10,7 +10,6 @@ import static com.codeborne.selenide.CollectionCondition.*;
 public class TodoMvcTest {
     @Test
     void completeTask() {
-
         open("http://todomvc.com/examples/emberjs/");
 
         $("#new-todo").setValue("a").pressEnter();

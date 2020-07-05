@@ -1,5 +1,4 @@
 .idea/
 .gradle/
-src/test/java/com/syd/selenideintro/GoogleTest.java
-src/test/java/com/syd/selenideintro/TodoMvcTest.java
+lib/
 build/
