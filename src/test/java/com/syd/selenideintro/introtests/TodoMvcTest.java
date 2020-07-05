@@ -14,6 +14,7 @@ public class TodoMvcTest {
         element("#new-todo").setValue("a").pressEnter();
         element("#new-todo").setValue("b").pressEnter();
         element("#new-todo").setValue("c").pressEnter();
+
         elements("#todo-list>li").shouldHave(exactTexts("a", "b", "c"));
 
         elements("#todo-list>li").findBy(exactText("b")).find(".toggle").click();
