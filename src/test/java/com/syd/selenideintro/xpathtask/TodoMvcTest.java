@@ -18,10 +18,10 @@ public class TodoMvcTest {
         $x("//*[@id='todo-list']/li[.//text()='b']//*" +
                 "[contains(concat(' ', normalize-space(@class), ' '), ' toggle ')]")
                 .click();
-        $$x("//*[@id='todo-list']//li" +
+        $$x("//*[@id='todo-list']/li" +
                 "[contains(concat(' ', normalize-space(@class), ' '), ' completed ')]")
                 .shouldHave(exactTexts("b"));
-        $$x("//*[@id='todo-list']//li" +
+        $$x("//*[@id='todo-list']/li" +
                 "[not(contains(concat(' ', normalize-space(@class), ' '), ' completed '))]")
                 .shouldHave(exactTexts("a", "c"));
     }
