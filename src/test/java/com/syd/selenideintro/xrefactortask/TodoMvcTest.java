@@ -11,24 +11,20 @@ public class TodoMvcTest {
     void completeTask() {
         open("http://todomvc.com/examples/emberjs/");
 
-        $x(X.hasId("new-todo")).setValue("a").pressEnter();
-        $x(X.hasId("new-todo")).setValue("b").pressEnter();
-        $x(X.hasId("new-todo")).setValue("c").pressEnter();
-        $$x(X.hasId("todo-list")+ X.hasChild("li")).shouldHave(exactTexts("a", "b", "c"));
+        $x("//*[@id='new-todo']").setValue("a").pressEnter();
+        $x("//*[@id='new-todo']").setValue("b").pressEnter();
+        $x("//*[@id='new-todo']").setValue("c").pressEnter();
+        $$x("//*[@id='todo-list']/li")
+                .shouldHave(exactTexts("a", "b", "c"));
 
-        $x(X.hasId("todo-list")+
-                X.hasChild("li") +
-                X.hasDescendantWithText("b") +
-                X.hasDescendant() +
-                X.hasCssClass("toggle"))
+        $x("//*[@id='todo-list']/li[.//text()='b']//*" +
+                X.FilterBy.cssClass("toggle"))
                 .click();
-        $$x(X.hasId("todo-list") +
-                X.hasChild("li") +
-                X.hasCssClass("completed"))
+        $$x("//*[@id='todo-list']/li" +
+                X.FilterBy.cssClass("completed"))
                 .shouldHave(exactTexts("b"));
-        $$x(X.hasId("todo-list") +
-                X.hasChild("li") +
-                X.hasNotCssClass("completed"))
-                .shouldHave(exactTexts("a","c"));
+        $$x("//*[@id='todo-list']/li" +
+                X.FilterBy.noCssClass("completed"))
+                .shouldHave(exactTexts("a", "c"));
     }
 }

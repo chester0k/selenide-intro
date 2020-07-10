@@ -1,27 +1,31 @@
 package com.syd.selenideintro.xpathhelpers;
 
 public class X {
-    public static String hasCssClass(String className) {
-        return String.format("[contains(concat(' ', normalize-space(@class), ' '), ' %s ')]", className);
+
+    public static String filterBy(String predicate) {
+        return "[" + predicate + "]";
     }
 
-    public static String hasNotCssClass(String className) {
-        return String.format("[not(contains(concat(' ', normalize-space(@class), ' '), ' %s '))]", className);
+    public static String not(String predicate) {
+        return "not(" + predicate + ")";
     }
 
-    public static String hasId(String id) {
-        return String.format("//*[@id='%s']", id);
-    }
-    public static String hasChild(String child) {
-        return String.format("/%s", child);
+    public static String hasCssClass(String name) {
+        return "contains(concat(' ', normalize-space(@class), ' '), " +
+                "' " + name + "' " + ")";
     }
 
-    public static String hasDescendantWithText(String text) {
-        return String.format("[.//text()='%s']", text);
+    public static String hasNoCssClass(String name) {
+        return not(hasCssClass(name));
     }
 
-    public static String hasDescendant() {
-        return "//*";
+    public static class FilterBy {
+        public static String noCssClass(String name) {
+            return filterBy(not(hasCssClass(name)));
+        }
+
+        public static String cssClass(String name) {
+            return filterBy(hasCssClass(name));
+        }
     }
 }
-
