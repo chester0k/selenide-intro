@@ -1,31 +1,38 @@
 package com.syd.selenideintro.xpathhelpers;
 
 public class X {
+    private String fullXpath;
 
-    public static String filterBy(String predicate) {
-        return "[" + predicate + "]";
+    public X(String startPath) {
+        fullXpath = startPath;
     }
 
-    public static String not(String predicate) {
-        return "not(" + predicate + ")";
+    public X by(String predicate) {
+        this.fullXpath += "[" + predicate + "]";
+        return this;
     }
 
-    public static String hasCssClass(String name) {
-        return "contains(concat(' ', normalize-space(@class), ' '), " +
-                "' " + name + "' " + ")";
+    public X not(String predicate) {
+        this.fullXpath += "not(" + predicate + ")";
+        return this;
     }
 
-    public static String hasNoCssClass(String name) {
-        return not(hasCssClass(name));
+    public X child(String value) {
+        this.fullXpath += "/" + value;
+        return this;
     }
 
-    public static class FilterBy {
-        public static String noCssClass(String name) {
-            return filterBy(not(hasCssClass(name)));
-        }
-
-        public static String cssClass(String name) {
-            return filterBy(hasCssClass(name));
-        }
+    public static X all() {
+        return new X("//*");
     }
+
+    public X descendant() {
+        this.fullXpath += "//*";
+        return this;
+    }
+
+    public String x() {
+        return this.fullXpath;
+    }
+
 }
