@@ -1,14 +1,13 @@
-package com.syd.selenideintro.xpathhelpers;
+package com.syd.selenideintro.dsl;
 
 
 public class Its {
-
     public static String cssClass(String name) {
         return "contains(concat(' ', normalize-space(@class), ' '), " +
                 "' " + name + "' " + ")";
     }
 
-    public static String descendantWithText(String value) {
+    public static String descendantText(String value) {
         return ".//text()=" + "'" + value + "'";
     }
 
@@ -19,8 +18,6 @@ public class Its {
     public static String not(String predicate) {
         return "not(" + predicate + ")";
     }
-
-
 }
 
 

@@ -1,6 +1,6 @@
 package com.syd.selenideintro.xrefactortask;
 
-import com.syd.selenideintro.xpathhelpers.Xpath;
+import com.syd.selenideintro.utils.Path;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
@@ -18,13 +18,13 @@ public class TodoMvcTest {
                 .shouldHave(exactTexts("a", "b", "c"));
 
         $x("//*[@id='todo-list']/li[.//text()='b']//*" +
-                Xpath.FilterBy.cssClass("toggle"))
+                Path.FilterBy.cssClass("toggle"))
                 .click();
         $$x("//*[@id='todo-list']/li" +
-                Xpath.FilterBy.cssClass("completed"))
+                Path.FilterBy.cssClass("completed"))
                 .shouldHave(exactTexts("b"));
         $$x("//*[@id='todo-list']/li" +
-                Xpath.FilterBy.noCssClass("completed"))
+                Path.FilterBy.noCssClass("completed"))
                 .shouldHave(exactTexts("a", "c"));
     }
 }

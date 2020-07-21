@@ -1,6 +1,6 @@
-package com.syd.selenideintro.xpathhelpers;
+package com.syd.selenideintro.utils;
 
-public class Xpath {
+public class Path {
 
     public static String filterBy(String predicate) {
         return "[" + predicate + "]";

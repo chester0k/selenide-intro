@@ -1,7 +1,7 @@
 package com.syd.selenideintro.dsltask;
 
-import com.syd.selenideintro.xpathhelpers.Its;
-import com.syd.selenideintro.xpathhelpers.X;
+import com.syd.selenideintro.dsl.Its;
+import com.syd.selenideintro.dsl.Path;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
@@ -12,22 +12,22 @@ public class TodoMvcTest {
     void completeTask() {
         open("http://todomvc.com/examples/emberjs/");
 
-        $x(X.all().by(Its.id("new-todo")).x()).setValue("a").pressEnter();
-        $x(X.all().by(Its.id("new-todo")).x()).setValue("b").pressEnter();
-        $x(X.all().by(Its.id("new-todo")).x()).setValue("c").pressEnter();
-        $$x(X.all().by(Its.id("todo-list")).child("li").x())
+        $x(Path.any().by(Its.id("new-todo")).x()).setValue("a").pressEnter();
+        $x(Path.any().by(Its.id("new-todo")).x()).setValue("b").pressEnter();
+        $x(Path.any().by(Its.id("new-todo")).x()).setValue("c").pressEnter();
+        $$x(Path.any().by(Its.id("todo-list")).child("li").x())
                 .shouldHave(exactTexts("a", "b", "c"));
 
-        $x(X.all().by(Its.id("todo-list")).child("li")
-                .by(Its.descendantWithText("b"))
+        $x(Path.any().by(Its.id("todo-list")).child("li")
+                .by(Its.descendantText("b"))
                 .descendant()
                 .by(Its.cssClass("toggle")).x())
                 .click();
-        $$x(X.all().by(Its.id("todo-list")).child("li")
+        $$x(Path.any().by(Its.id("todo-list")).child("li")
                 .by(Its.cssClass("completed")).x())
                 .shouldHave(exactTexts("b"));
-        $$x(X.all().by(Its.id("todo-list")).child("li")
-                .by(Its.not(Its.cssClass("completed"))).x())
+        $$x(Path.any().by(Its.id("todo-list")).child("li")
+                .byNot(Its.cssClass("completed")).x())
                 .shouldHave(exactTexts("a", "c"));
     }
 }
